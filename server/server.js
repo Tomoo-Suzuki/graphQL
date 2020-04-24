@@ -2,9 +2,10 @@ const express = require("express");
 const graphqlHTTP = require("express-graphql");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const {
+  postgres
+} = require("./postgres");
 // const schema = require('./schema/schema')
-
-const { postgres } = require("./postgres");
 
 const app = express();
 
