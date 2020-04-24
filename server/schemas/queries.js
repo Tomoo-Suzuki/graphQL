@@ -22,7 +22,6 @@ const {
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
-
     user: {
       type: UserType,
       args: {

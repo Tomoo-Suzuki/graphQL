@@ -77,7 +77,7 @@ const AccountType = new GraphQLObjectType({
 })
 
 const StoryType = new GraphQLObjectType({
-  name: 'Storie',
+  name: 'Story',
   fields: () => ({
     id: {
       type: GraphQLID
@@ -171,7 +171,7 @@ const PostType = new GraphQLObjectType({
 
 exports.UserType = UserType;
 exports.AccountType = AccountType;
-exports.StotyType = StoryType;
+exports.StoryType = StoryType;
 exports.PostType = PostType;
 
 

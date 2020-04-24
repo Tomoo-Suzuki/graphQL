@@ -12,9 +12,10 @@ pool.connect(function (err, client) {
   if (err) {
     console.log(err);
   } else {
-    client.query('SELECT FROM posts', function (err, result) {
-      console.log(result); //コンソール上での確認用なため、この1文は必須ではない。
+    client.query('SELECT * FROM posts', function (err, result) {
+      console.log('result----------');
+      console.log(result);
     });
-    pool.end()
+    //pool.end()
   }
 });

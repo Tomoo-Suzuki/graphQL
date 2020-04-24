@@ -16,7 +16,8 @@ const {
   GraphQLSchema,
   GraphQLInt,
   GraphQLList,
-  GraphQLNonNull
+  GraphQLNonNull,
+  GraphQLTimestamp
 } = graphql
 
 const RootMutation = new GraphQLObjectType({
@@ -44,10 +45,7 @@ const RootMutation = new GraphQLObjectType({
       resolve(parent, args) {
         const query = `INSERT INTO project(creator_id, created, title, description) VALUES ($1, $2, $3, $4) RETURNING title`;
         const values = [
-          args.creatorId,
-          new Date(),
-          args.title,
-          args.description
+          args.id
         ];
         return db
           .one(query, values)
@@ -98,10 +96,7 @@ const RootMutation = new GraphQLObjectType({
       resolve(parent, args) {
         const query = `INSERT INTO project(creator_id, created, title, description) VALUES ($1, $2, $3, $4) RETURNING title`;
         const values = [
-          args.creatorId,
-          new Date(),
-          args.title,
-          args.description
+          args.id
         ];
         return db
           .one(query, values)
@@ -110,7 +105,7 @@ const RootMutation = new GraphQLObjectType({
       }
     },
     addStory: {
-      type: storyType,
+      type: StoryType,
       args: {
         id: {
           type: GraphQLID
@@ -167,10 +162,7 @@ const RootMutation = new GraphQLObjectType({
       resolve(parent, args) {
         const query = `INSERT INTO project(creator_id, created, title, description) VALUES ($1, $2, $3, $4) RETURNING title`;
         const values = [
-          args.creatorId,
-          new Date(),
-          args.title,
-          args.description
+          args.id,
         ];
         return db
           .one(query, values)
@@ -215,10 +207,7 @@ const RootMutation = new GraphQLObjectType({
       resolve(parent, args) {
         const query = `INSERT INTO project(creator_id, created, title, description) VALUES ($1, $2, $3, $4) RETURNING title`;
         const values = [
-          args.creatorId,
-          new Date(),
-          args.title,
-          args.description
+          args.id,
         ];
         return db
           .one(query, values)
@@ -446,7 +435,7 @@ const RootMutation = new GraphQLObjectType({
       }
     },
     deleteAccount: {
-      type: MovieType,
+      type: AccountType,
       args: {
         id: {
           type: GraphQLNonNull(GraphQLID)
@@ -464,7 +453,7 @@ const RootMutation = new GraphQLObjectType({
       }
     },
     deleteStory: {
-      type: MovieType,
+      type: StoryType,
       args: {
         id: {
           type: GraphQLNonNull(GraphQLID)
@@ -482,7 +471,7 @@ const RootMutation = new GraphQLObjectType({
       }
     },
     deletePost: {
-      type: MovieType,
+      type: PostType,
       args: {
         id: {
           type: GraphQLNonNull(GraphQLID)

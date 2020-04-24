@@ -5,26 +5,23 @@ const cors = require("cors");
 const {
   postgres
 } = require("./postgres");
-// const schema = require('./schema/schema')
+const {
+  schema
+} = require('./schemas/schema')
 
 const app = express();
 
 app.use(cors());
 
-postgres.one("select * from users").then((res) => {
-  try {
-    console.log(res);
-  } catch (e) {
-    console.log(e);
-  }
-});
-
-//endpoint
-// app.use('/graphql', bodyParser.json(), graphqlHTTP({
-//   schema,
-//   graphiql: true
-// }))
+app.use('/graphql', graphqlHTTP({
+  schema,
+  graphiql: true,
+}))
 
 app.listen(7777, () => {
-  console.log(`GraphQL Server listening on port 7777`);
+  console.log(`GraphQL Server listening...Access url is below`);
+  console.log(`http://localhost:7777/graphql`);
+
 });
+
+//https://dev.to/aurelkurtula/exploring-graphql-api-serve-3abf
