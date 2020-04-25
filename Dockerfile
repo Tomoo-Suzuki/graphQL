@@ -5,5 +5,5 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 EXPOSE 7777
-CMD ["nodemon", "server"]
+CMD ["npm", "start"]
 RUN echo "nodemon start..."
