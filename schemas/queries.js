@@ -53,14 +53,28 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parentValue, args) {
         const query = `SELECT * FROM accounts WHERE id=$1`;
-        const values = [args.id];
         return postgres
           .one(query, values)
           .then(res => res)
           .catch(err => err);
       }
     },
-    storie: {
+    accountAll: {
+      type: AccountType,
+      args: {
+        id: {
+          type: GraphQLID
+        }
+      },
+      resolve(parentValue, args) {
+        const query = `SELECT * FROM accounts`;
+        return postgres
+          .one(query)
+          .then(res => res)
+          .catch(err => err);
+      }
+    },
+    story: {
       type: StoryType,
       args: {
         id: {
@@ -69,9 +83,24 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parentValue, args) {
         const query = `SELECT * FROM stories WHERE id=$1`;
-        const values = [args.id];
+        const values = args.id;
         return postgres
           .one(query, values)
+          .then(res => res)
+          .catch(err => err);
+      }
+    },
+    storyAll: {
+      type: StoryType,
+      args: {
+        id: {
+          type: GraphQLID
+        }
+      },
+      resolve(parentValue, args) {
+        const query = `SELECT * FROM stories`;
+        return postgres
+          .one(query)
           .then(res => res)
           .catch(err => err);
       }
@@ -80,15 +109,30 @@ const RootQuery = new GraphQLObjectType({
     post: {
       type: PostType,
       args: {
+        id_post: {
+          type: GraphQLID
+        }
+      },
+      resolve(parentValue, args) {
+        const query = `SELECT * FROM posts WHERE id_post=$1`;
+        const values = args.id_post;
+        return postgres
+          .one(query, values)
+          .then(res => res)
+          .catch(err => err);
+      }
+    },
+    postAll: {
+      type: PostType,
+      args: {
         id: {
           type: GraphQLID
         }
       },
       resolve(parentValue, args) {
-        const query = `SELECT * FROM posts WHERE id=$1`;
-        const values = [args.id];
+        const query = `SELECT * FROM posts`;
         return postgres
-          .one(query, values)
+          .one(query)
           .then(res => res)
           .catch(err => err);
       }
