@@ -34,6 +34,16 @@ const RootQuery = new GraphQLObjectType({
           .catch(err => err);
       }
     },
+    userAll: {
+      type: UserType,
+      resolve() {
+        const query = `SELECT * FROM users`;
+        return postgres
+          .one(query)
+          .then(res => res)
+          .catch(err => err);
+      }
+    },
     account: {
       type: AccountType,
       args: {

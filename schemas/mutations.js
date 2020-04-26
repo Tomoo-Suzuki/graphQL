@@ -20,7 +20,6 @@ const {
   GraphQLNonNull,
 } = graphql
 
-
 const RootMutation = new GraphQLObjectType({
   name: 'RootMutationType',
   fields: {
@@ -28,9 +27,14 @@ const RootMutation = new GraphQLObjectType({
       type: UserType,
       args: user,
       resolve(parent, args) {
-        const query = `INSERT INTO project(creator_id, created, title, description) VALUES ($1, $2, $3, $4) RETURNING title`;
+        const query = `INSERT INTO users(id, password, user_type, magazine, agree_to_terms, date_reception) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id, password, user_type, magazine, agree_to_terms, date_reception`;
         const values = [
-          args.id
+          args.id,
+          args.password,
+          args.user_type,
+          args.magazine,
+          args.agree_to_terms,
+          args.date_reception
         ];
         return postgres
           .one(query, values)
@@ -42,7 +46,7 @@ const RootMutation = new GraphQLObjectType({
       type: AccountType,
       args: account,
       resolve(parent, args) {
-        const query = `INSERT INTO project(creator_id, created, title, description) VALUES ($1, $2, $3, $4) RETURNING title`;
+        const query = `INSERT INTO accounts(creator_id, created, title, description) VALUES ($1, $2, $3, $4) RETURNING title`;
         const values = [
           args.id
         ];
@@ -70,7 +74,7 @@ const RootMutation = new GraphQLObjectType({
       type: PostType,
       args: post,
       resolve(parent, args) {
-        const query = `INSERT INTO project(creator_id, created, title, description) VALUES ($1, $2, $3, $4) RETURNING title`;
+        const query = `INSERT INTO users(creator_id, created, title, description) VALUES ($1, $2, $3, $4) RETURNING title`;
         const values = [
           args.id,
         ];
