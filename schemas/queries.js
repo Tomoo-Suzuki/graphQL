@@ -53,6 +53,7 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parentValue, args) {
         const query = `SELECT * FROM accounts WHERE id=$1`;
+        const values = args.id;
         return postgres
           .one(query, values)
           .then(res => res)
@@ -61,11 +62,6 @@ const RootQuery = new GraphQLObjectType({
     },
     accountAll: {
       type: AccountType,
-      args: {
-        id: {
-          type: GraphQLID
-        }
-      },
       resolve(parentValue, args) {
         const query = `SELECT * FROM accounts`;
         return postgres
