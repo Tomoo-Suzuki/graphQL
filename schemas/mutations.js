@@ -164,16 +164,12 @@ const RootMutation = new GraphQLObjectType({
           title_chapter,
           title,
           story,
-          title_bk,
-          story_bk,
-          date_last_modify) VALUES ($1, $2, $3, $4,$5,$6,$7,$8,$9) RETURNING id_story,
+          date_last_modify) VALUES ($1, $2, $3, $4,$5,$6,$7) RETURNING id_story,
           id_post,
           has_chapter,
           title_chapter,
           title,
           story,
-          title_bk,
-          story_bk,
           date_last_modify`;
         const values = [
           args.id_story,
@@ -182,8 +178,6 @@ const RootMutation = new GraphQLObjectType({
           args.title_chapter,
           args.title,
           args.story,
-          args.title_bk,
-          args.story_bk,
           args.date_last_modify
         ];
         return postgres

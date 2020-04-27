@@ -46,6 +46,15 @@ const account = {
   first_name_kana: {
     type: GraphQLString
   },
+  tel: {
+    type: GraphQLString
+  },
+  email: {
+    type: GraphQLString
+  },
+  email_confirm: {
+    type: GraphQLString
+  },
   birthday: {
     type: GraphQLString
   },
