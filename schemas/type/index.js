@@ -1,11 +1,18 @@
 const graphql = require('graphql')
 
 const {
-  user,
-  account,
-  story,
+  user
+} = require("../model/user.js");
+const {
+  account
+} = require("../model/account.js");
+const {
+  story
+} = require("../model/story.js");
+const {
   post
-} = require("./models");
+} = require("../model/post.js");
+
 
 const {
   GraphQLObjectType,
