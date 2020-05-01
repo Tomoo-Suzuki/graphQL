@@ -1,29 +1,13 @@
-const graphql = require('graphql')
-const {
-  postgres
-} = require("../postgres");
-const {
-  UserType,
-  AccountType,
-  StoryType,
-  PostType
-} = require("./types");
-const {
-  user,
-  account,
-  story,
-  post
-} = require("./models");
-const {
-  GraphQLObjectType,
-  GraphQLID,
-  GraphQLNonNull,
-} = graphql
+const graphql = require("graphql");
+const { postgres } = require("../postgres");
+const { UserType, AccountType, StoryType, PostType } = require("./types");
+const { user, account, story, post } = require("./models");
+const { GraphQLObjectType, GraphQLID, GraphQLNonNull } = graphql;
 
 const RootMutation = new GraphQLObjectType({
-  name: 'RootMutationType',
+  name: "RootMutationType",
   fields: {
-    addUser: {
+    insertUser: {
       type: UserType,
       args: user,
       resolve(parent, args) {
@@ -34,15 +18,15 @@ const RootMutation = new GraphQLObjectType({
           args.user_type,
           args.magazine,
           args.agree_to_terms,
-          args.date_reception
+          args.date_reception,
         ];
         return postgres
           .one(query, values)
-          .then(res => res)
-          .catch(err => err);
-      }
+          .then((res) => res)
+          .catch((err) => err);
+      },
     },
-    addAccount: {
+    insertAccount: {
       type: AccountType,
       args: account,
       resolve(parent, args) {
@@ -84,15 +68,15 @@ const RootMutation = new GraphQLObjectType({
           args.city,
           args.address3,
           args.building,
-          args.purpose
+          args.purpose,
         ];
         return postgres
           .one(query, values)
-          .then(res => res)
-          .catch(err => err);
-      }
+          .then((res) => res)
+          .catch((err) => err);
+      },
     },
-    addStory: {
+    insertStory: {
       type: StoryType,
       args: story,
       resolve(parent, args) {
@@ -146,15 +130,15 @@ const RootMutation = new GraphQLObjectType({
           args.accept_reviews,
           args.accept_impression,
           args.publish_evaluation,
-          args.accept_typo_reports
+          args.accept_typo_reports,
         ];
         return postgres
           .one(query, values)
-          .then(res => res)
-          .catch(err => err);
-      }
+          .then((res) => res)
+          .catch((err) => err);
+      },
     },
-    addPost: {
+    insertPost: {
       type: PostType,
       args: post,
       resolve(parent, args) {
@@ -178,144 +162,127 @@ const RootMutation = new GraphQLObjectType({
           args.title_chapter,
           args.title,
           args.story,
-          args.date_last_modify
+          args.date_last_modify,
         ];
         return postgres
           .one(query, values)
-          .then(res => res)
-          .catch(err => err);
-      }
+          .then((res) => res)
+          .catch((err) => err);
+      },
     },
     updateUser: {
       type: UserType,
       args: user,
       resolve(parent, args) {
         const query = `UPDATE SET(creator_id, created, title, description) VALUES ($1, $2, $3, $4) WHERE id=$1`;
-        const values = [
-          args.id,
-        ];
+        const values = [args.id];
         return postgres
           .one(query, values)
-          .then(res => res)
-          .catch(err => err);
-      }
+          .then((res) => res)
+          .catch((err) => err);
+      },
     },
     updateAccount: {
       type: AccountType,
       args: account,
       resolve(parent, args) {
         const query = `UPDATE SET(creator_id, created, title, description) VALUES ($1, $2, $3, $4) WHERE id=$1`;
-        const values = [
-          args.id,
-        ];
+        const values = [args.id];
         return postgres
           .one(query, values)
-          .then(res => res)
-          .catch(err => err);
-      }
+          .then((res) => res)
+          .catch((err) => err);
+      },
     },
     updateStory: {
       type: StoryType,
       args: story,
       resolve(parent, args) {
         const query = `UPDATE SET(creator_id, created, title, description) VALUES ($1, $2, $3, $4) WHERE id=$1`;
-        const values = [
-          args.id,
-        ];
+        const values = [args.id];
         return postgres
           .one(query, values)
-          .then(res => res)
-          .catch(err => err);
-
-      }
+          .then((res) => res)
+          .catch((err) => err);
+      },
     },
     updatePost: {
       type: PostType,
       args: post,
       resolve(parent, args) {
         const query = `UPDATE SET(creator_id, created, title, description) VALUES ($1, $2, $3, $4) WHERE id=$1`;
-        const values = [
-          args.id,
-        ];
+        const values = [args.id];
         return postgres
           .one(query, values)
-          .then(res => res)
-          .catch(err => err);
-      }
+          .then((res) => res)
+          .catch((err) => err);
+      },
     },
     deleteUser: {
       type: UserType,
       args: {
         id: {
-          type: GraphQLNonNull(GraphQLID)
+          type: GraphQLNonNull(GraphQLID),
         },
       },
       resolve(parent, args) {
         const query = `DELETE FROM users WHERE id=$1 RETURNING id`;
-        const values = [
-          args.id,
-        ];
+        const values = [args.id];
         return postgres
           .one(query, values)
-          .then(res => res)
-          .catch(err => err);
-      }
+          .then((res) => res)
+          .catch((err) => err);
+      },
     },
     deleteAccount: {
       type: AccountType,
       args: {
         id: {
-          type: GraphQLNonNull(GraphQLID)
+          type: GraphQLNonNull(GraphQLID),
         },
       },
       resolve(parent, args) {
         const query = `DELETE FROM accounts WHERE id=$1 RETURNING id`;
-        const values = [
-          args.id,
-        ];
+        const values = [args.id];
         return postgres
           .one(query, values)
-          .then(res => res)
-          .catch(err => err);
-      }
+          .then((res) => res)
+          .catch((err) => err);
+      },
     },
     deleteStory: {
       type: StoryType,
       args: {
         id: {
-          type: GraphQLNonNull(GraphQLID)
+          type: GraphQLNonNull(GraphQLID),
         },
       },
       resolve(parent, args) {
         const query = `DELETE FROM stories WHERE id=$1 RETURNING id`;
-        const values = [
-          args.id,
-        ];
+        const values = [args.id];
         return postgres
           .one(query, values)
-          .then(res => res)
-          .catch(err => err);
-      }
+          .then((res) => res)
+          .catch((err) => err);
+      },
     },
     deletePost: {
       type: PostType,
       args: {
         id_post: {
-          type: GraphQLNonNull(GraphQLID)
+          type: GraphQLNonNull(GraphQLID),
         },
       },
       resolve(parent, args) {
         const query = `DELETE FROM posts WHERE id_post=$1 RETURNING id_post`;
-        const values = [
-          args.id_post,
-        ];
+        const values = [args.id_post];
         return postgres
           .one(query, values)
-          .then(res => res)
-          .catch(err => err);
-      }
+          .then((res) => res)
+          .catch((err) => err);
+      },
     },
-  }
-})
+  },
+});
 
 exports.RootMutation = RootMutation;
