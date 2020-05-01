@@ -18,7 +18,7 @@ const {
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
-    user: {
+    selectUser: {
       type: UserType,
       args: {
         id: {
@@ -34,7 +34,7 @@ const RootQuery = new GraphQLObjectType({
           .catch(err => err);
       }
     },
-    userAll: {
+    selectUserAll: {
       type: UserType,
       resolve() {
         const query = `SELECT * FROM users`;
@@ -44,7 +44,7 @@ const RootQuery = new GraphQLObjectType({
           .catch(err => err);
       }
     },
-    account: {
+    selectAccount: {
       type: AccountType,
       args: {
         id: {
@@ -60,7 +60,7 @@ const RootQuery = new GraphQLObjectType({
           .catch(err => err);
       }
     },
-    accountAll: {
+    selectAccountAll: {
       type: AccountType,
       resolve(parentValue, args) {
         const query = `SELECT * FROM accounts`;
@@ -70,7 +70,7 @@ const RootQuery = new GraphQLObjectType({
           .catch(err => err);
       }
     },
-    story: {
+    selectStory: {
       type: StoryType,
       args: {
         id: {
@@ -86,7 +86,7 @@ const RootQuery = new GraphQLObjectType({
           .catch(err => err);
       }
     },
-    storyAll: {
+    selectStoryAll: {
       type: StoryType,
       args: {
         id: {
@@ -102,7 +102,7 @@ const RootQuery = new GraphQLObjectType({
       }
     },
 
-    post: {
+    selectPost: {
       type: PostType,
       args: {
         id_post: {
@@ -118,7 +118,7 @@ const RootQuery = new GraphQLObjectType({
           .catch(err => err);
       }
     },
-    postAll: {
+    selectPostAll: {
       type: PostType,
       args: {
         id: {
