@@ -4,6 +4,9 @@ const {
   insertUser
 } = require('./insertUser.js');
 const {
+  insertRegistry
+} = require('./insertRegistry.js');
+const {
   insertAccount
 } = require('./insertAccount.js');
 const {
@@ -45,6 +48,7 @@ const RootMutation = new GraphQLObjectType({
   name: "RootMutationType",
   fields: {
     insertUser: insertUser,
+    insertRegistry: insertRegistry,
     insertAccount: insertAccount,
     insertStory: insertStory,
     insertPost: insertPost,
