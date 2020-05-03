@@ -1,11 +1,21 @@
 const graphql = require('graphql')
 
 const {
-  user,
-  account,
-  story,
+  user
+} = require("../model/user.js");
+const {
+  registry
+} = require("../model/registry.js");
+const {
+  account
+} = require("../model/account.js");
+const {
+  story
+} = require("../model/story.js");
+const {
   post
-} = require("./models");
+} = require("../model/post.js");
+
 
 const {
   GraphQLObjectType,
@@ -15,6 +25,11 @@ const UserType = new GraphQLObjectType({
   name: 'User',
   // fields: () => (user)
   fields: user
+})
+const RegistryType = new GraphQLObjectType({
+  name: 'Registry',
+  // fields: () => (registry)
+  fields: registry
 })
 
 const AccountType = new GraphQLObjectType({
@@ -36,6 +51,7 @@ const PostType = new GraphQLObjectType({
 })
 
 exports.UserType = UserType;
+exports.RegistryType = RegistryType;
 exports.AccountType = AccountType;
 exports.StoryType = StoryType;
 exports.PostType = PostType;
