@@ -10,6 +10,9 @@ const {
   insertAccount
 } = require('./insertAccount.js');
 const {
+  insertAccountU
+} = require('./insertAccountU.js');
+const {
   insertStory
 } = require('./insertStory.js');
 const {
@@ -50,6 +53,7 @@ const RootMutation = new GraphQLObjectType({
     insertUser: insertUser,
     insertRegistry: insertRegistry,
     insertAccount: insertAccount,
+    insertAccountU: insertAccountU,
     insertStory: insertStory,
     insertPost: insertPost,
     updateUser: updateUser,
