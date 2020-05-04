@@ -8,7 +8,7 @@ const {
 } = graphql
 
 const registry = {
-  id: {
+  id_user: {
     type: GraphQLID
   },
   password: {
