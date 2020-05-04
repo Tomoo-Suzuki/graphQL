@@ -13,9 +13,9 @@ const insertRegistry = {
   type: RegistryType,
   args: registry,
   resolve(parent, args) {
-    const query = `INSERT INTO users(id, password, date_reception) VALUES ($1, $2, $3) RETURNING id, date_reception; INSERT INTO accounts(id, email, email_confirm) VALUES ($1, $4, $5) RETURNING email, email_confirm`;
+    const query = `INSERT INTO users(id_user, password, date_reception) VALUES ($1, $2, $3) RETURNING id_user, date_reception; INSERT INTO accounts(id_user, email, email_confirm) VALUES ($1, $4, $5) RETURNING email, email_confirm`;
     const values = [
-      args.id,
+      args.id_user,
       args.password,
       args.date_reception,
       args.email,

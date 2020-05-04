@@ -3,10 +3,11 @@ const graphql = require('graphql')
 const {
   GraphQLID,
   GraphQLString,
+  GraphQLInt
 } = graphql
 
 const account = {
-  id: {
+  id_user: {
     type: GraphQLID
   },
   last_name: {
@@ -23,6 +24,9 @@ const account = {
   },
   tel: {
     type: GraphQLString
+  },
+  gender: {
+    type: GraphQLInt
   },
   email: {
     type: GraphQLString

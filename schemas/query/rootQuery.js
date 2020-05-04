@@ -10,6 +10,9 @@ const {
   selectAccount
 } = require("./selectAccount.js");
 const {
+  selectAccountU
+} = require("./selectAccountU.js");
+const {
   selectAccountAll
 } = require("./selectAccountAll.js");
 const {
@@ -36,6 +39,7 @@ const RootQuery = new GraphQLObjectType({
     selectUser: selectUser,
     selectUserAll: selectUserAll,
     selectAccount: selectAccount,
+    selectAccountU: selectAccountU,
     selectAccountAll: selectAccountAll,
     selectStory: selectStory,
     selectStoryAll: selectStoryAll,
