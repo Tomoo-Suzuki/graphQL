@@ -15,7 +15,9 @@ const insertAccount = {
   args: account,
   resolve(parent, args) {
     const query = `INSERT INTO accounts(
-          id,
+          email,
+          email_confirm,
+          id_user,
           last_name,
           first_name,
           last_name_kana,
@@ -27,8 +29,10 @@ const insertAccount = {
           address3,
           building,
           purpose
-          ) VALUES ($1, $2, $3, $4,$5,$6,$7,$8,$9,$10,$11,$12) RETURNING
-          id,
+          ) VALUES ($1, $2, $3, $4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14) RETURNING
+          email,
+          email_confirm,
+          id_user,
           last_name,
           first_name,
           last_name_kana,
@@ -41,7 +45,9 @@ const insertAccount = {
           building,
           purpose`;
     const values = [
-      args.id,
+      args.email,
+      args.email_confirm,
+      args.id_user,
       args.last_name,
       args.first_name,
       args.last_name_kana,

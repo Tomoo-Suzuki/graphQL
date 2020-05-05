@@ -8,19 +8,19 @@ const {
 } = require("../type/");
 
 const {
-  GraphQLID,
+  GraphQLString,
 } = graphql
 
 const selectAccount = {
   type: AccountType,
   args: {
-    id: {
-      type: GraphQLID
+    email: {
+      type: GraphQLString
     }
   },
   resolve(parentValue, args) {
-    const query = `SELECT * FROM accounts WHERE id=$1`;
-    const values = args.id;
+    const query = `SELECT * FROM accounts WHERE email=$1`;
+    const values = args.email;
     return postgres
       .one(query, values)
       .then(res => res)
