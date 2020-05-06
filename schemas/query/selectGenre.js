@@ -4,28 +4,27 @@ const {
 } = require("../../postgres");
 
 const {
-  StoryType
+  GenreType
 } = require("../type/");
 
 const {
-  GraphQLID
+  GraphQLInt
 } = graphql
 
-const selectStoryAll = {
-
-  type: StoryType,
+const selectGenre = {
+  type: GenreType,
   args: {
-    id: {
-      type: GraphQLID
+    genre: {
+      type: GraphQLInt
     }
   },
   resolve(parentValue, args) {
-    const query = `SELECT * FROM stories`;
+    const query = `SELECT * FROM master_book WHERE genre=$1`;
+    const values = args.genre;
     return postgres
-      .one(query)
+      .many(query, values)
       .then(res => res)
       .catch(err => err);
   }
 }
-
-exports.selectStoryAll = selectStoryAll;
+exports.selectGenre = selectGenre;

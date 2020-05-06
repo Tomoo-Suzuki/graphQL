@@ -16,6 +16,10 @@ const {
   post
 } = require("../model/post.js");
 
+const {
+  genre
+} = require("../model/genre.js");
+
 
 const {
   GraphQLObjectType,
@@ -50,8 +54,15 @@ const PostType = new GraphQLObjectType({
   fields: post
 })
 
+const GenreType = new GraphQLObjectType({
+  name: 'Genre',
+  // fields: () => (post)
+  fields: genre
+})
+
 exports.UserType = UserType;
 exports.RegistryType = RegistryType;
 exports.AccountType = AccountType;
 exports.StoryType = StoryType;
 exports.PostType = PostType;
+exports.GenreType = GenreType;
