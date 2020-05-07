@@ -23,7 +23,9 @@ const selectAccount = {
     const values = args.email;
     return postgres
       .one(query, values)
-      .then(res => res)
+      .then(function (res) {
+        return res;
+      })
       .catch(err => err);
   }
 }

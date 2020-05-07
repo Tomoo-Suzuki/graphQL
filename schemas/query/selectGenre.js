@@ -1,4 +1,4 @@
-const graphql = require('graphql')
+const graphql = require("graphql");
 const {
   postgres
 } = require("../../postgres");
@@ -8,23 +8,26 @@ const {
 } = require("../type/");
 
 const {
-  GraphQLInt
-} = graphql
+  GraphQLInt,
+  GraphQLList,
+} = graphql;
 
 const selectGenre = {
-  type: GenreType,
+  type: new GraphQLList(GenreType),
   args: {
     genre: {
-      type: GraphQLInt
-    }
+      type: GraphQLInt,
+    },
   },
   resolve(parentValue, args) {
     const query = `SELECT * FROM master_book WHERE genre=$1`;
     const values = args.genre;
     return postgres
-      .many(query, values)
-      .then(res => res)
-      .catch(err => err);
-  }
-}
+      .any(query, values)
+      .then(function (res) {
+        return res
+      })
+      .catch((err) => err);
+  },
+};
 exports.selectGenre = selectGenre;

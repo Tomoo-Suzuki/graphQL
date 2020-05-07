@@ -56,7 +56,7 @@ const PostType = new GraphQLObjectType({
 
 const GenreType = new GraphQLObjectType({
   name: 'Genre',
-  // fields: () => (post)
+  //fields: () => (genre)
   fields: genre
 })
 
