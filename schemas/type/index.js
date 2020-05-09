@@ -1,4 +1,4 @@
-const graphql = require('graphql')
+const graphql = require("graphql");
 
 const {
   user
@@ -17,52 +17,52 @@ const {
 } = require("../model/post.js");
 
 const {
-  genre
-} = require("../model/genre.js");
-
+  item
+} = require("../model/item.js");
 
 const {
-  GraphQLObjectType,
-} = graphql
+  GraphQLObjectType
+} = graphql;
 
 const UserType = new GraphQLObjectType({
-  name: 'User',
+  name: "User",
   // fields: () => (user)
-  fields: user
-})
+  fields: user,
+});
 const RegistryType = new GraphQLObjectType({
-  name: 'Registry',
+  name: "Registry",
   // fields: () => (registry)
-  fields: registry
-})
+  fields: registry,
+});
 
 const AccountType = new GraphQLObjectType({
-  name: 'Account',
+  name: "Account",
   // fields: () => (account)
-  fields: account
-})
+  fields: account,
+});
 
 const StoryType = new GraphQLObjectType({
-  name: 'Story',
+  name: "Story",
   // fields: () => (story)
-  fields: story
-})
+  fields: story,
+});
 
 const PostType = new GraphQLObjectType({
-  name: 'Post',
+  name: "Post",
   // fields: () => (post)
-  fields: post
-})
+  fields: post,
+});
 
-const GenreType = new GraphQLObjectType({
-  name: 'Genre',
+const ItemType = new GraphQLObjectType({
+  name: "Item",
   //fields: () => (genre)
-  fields: genre
-})
+  fields: item,
+});
 
 exports.UserType = UserType;
 exports.RegistryType = RegistryType;
 exports.AccountType = AccountType;
 exports.StoryType = StoryType;
 exports.PostType = PostType;
-exports.GenreType = GenreType;
+exports.ItemType = ItemType;
+// exports.RankingType = RankingType;

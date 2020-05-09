@@ -5,29 +5,22 @@ const {
 
 const {
   ItemType
-} = require("../type/");
+} = require("../type");
 
 const {
-  GraphQLInt,
   GraphQLList,
 } = graphql;
 
-const selectGenre = {
+const selectRankingBest = {
   type: new GraphQLList(ItemType),
-  args: {
-    genre: {
-      type: GraphQLInt,
-    },
-  },
   resolve(parentValue, args) {
-    const query = `SELECT * FROM master_book WHERE genre=$1`;
-    const values = args.genre;
+    const query = `SELECT * FROM master_book order by point_sales asc limit 20`;
     return postgres
-      .any(query, values)
+      .any(query)
       .then(function (res) {
         return res
       })
       .catch((err) => err);
   },
 };
-exports.selectGenre = selectGenre;
+exports.selectRankingBest = selectRankingBest;

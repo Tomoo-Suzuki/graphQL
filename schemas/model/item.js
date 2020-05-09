@@ -7,7 +7,7 @@ const {
   GraphQLInt
 } = graphql
 
-const genre = {
+const item = {
   id_book: {
     type: GraphQLID
   },
@@ -109,4 +109,4 @@ const genre = {
   }
 }
 
-exports.genre = genre;
+exports.item = item;

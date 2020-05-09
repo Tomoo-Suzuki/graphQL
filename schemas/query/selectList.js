@@ -12,22 +12,16 @@ const {
   GraphQLList,
 } = graphql;
 
-const selectGenre = {
+const selectList = {
   type: new GraphQLList(ItemType),
-  args: {
-    genre: {
-      type: GraphQLInt,
-    },
-  },
   resolve(parentValue, args) {
-    const query = `SELECT * FROM master_book WHERE genre=$1`;
-    const values = args.genre;
+    const query = `SELECT * FROM master_book order by genre asc`;
     return postgres
-      .any(query, values)
+      .any(query)
       .then(function (res) {
         return res
       })
       .catch((err) => err);
   },
 };
-exports.selectGenre = selectGenre;
+exports.selectList = selectList;
