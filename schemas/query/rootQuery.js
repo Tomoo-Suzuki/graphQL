@@ -33,6 +33,9 @@ const {
 const {
   selectRanking
 } = require("./selectRanking.js");
+const {
+  selectDetail
+} = require("./selectDetail.js");
 
 const {
   GraphQLObjectType,
@@ -52,7 +55,8 @@ const RootQuery = new GraphQLObjectType({
     selectRankingGenre: selectRankingGenre,
     selectRankingBest: selectRankingBest,
     selectRankingEach1: selectRankingEach1,
-    selectRanking: selectRanking
+    selectRanking: selectRanking,
+    selectDetail: selectDetail
   }
 })
 exports.RootQuery = RootQuery;
