@@ -8,7 +8,7 @@ const {
 } = graphql
 
 const story = {
-  id: {
+  id_user: {
     type: GraphQLID
   },
   id_story: {
