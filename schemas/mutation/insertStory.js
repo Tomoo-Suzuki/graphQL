@@ -14,7 +14,7 @@ const insertStory = {
   type: StoryType,
   args: story,
   resolve(parent, args) {
-    const query = `INSERT INTO stories( id,
+    const query = `INSERT INTO stories( id_user,
           id_story,
           title_main,
           auther_name,
@@ -30,7 +30,8 @@ const insertStory = {
           accept_reviews,
           accept_impression,
           publish_evaluation,
-          accept_typo_reports) VALUES ($1, $2, $3, $4,$5,$6,$7,$8,$9,$10,$11,$12, $13, $14,$15, $16, $17) RETURNING  id,
+          accept_typo_reports) VALUES ($1, $2, $3, $4,$5,$6,$7,$8,$9,$10,$11,$12, $13, $14,$15, $16, $17) 
+          RETURNING  id_user,
           id_story,
           title_main,
           auther_name,
@@ -48,7 +49,7 @@ const insertStory = {
           publish_evaluation,
           accept_typo_reports`;
     const values = [
-      args.id,
+      args.id_user,
       args.id_story,
       args.title_main,
       args.auther_name,
