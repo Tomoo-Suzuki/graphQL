@@ -19,6 +19,9 @@ const {
   selectPost
 } = require("./selectPost.js");
 const {
+  selectPostStory
+} = require("./selectPostStory.js");
+const {
   selectGenre
 } = require("./selectGenre.js");
 const {
@@ -54,6 +57,7 @@ const RootQuery = new GraphQLObjectType({
     selectStory: selectStory,
     selectStoryUser: selectStoryUser,
     selectPost: selectPost,
+    selectPostStory: selectPostStory,
     selectGenre: selectGenre,
     selectList: selectList,
     selectRankingGenre: selectRankingGenre,
